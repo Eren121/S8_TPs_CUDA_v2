@@ -1,0 +1,39 @@
+/home/raphael/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/202.7660.37/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G "CodeBlocks - Unix Makefiles" /home/raphael/CLionProjects/S8_TPs_CUDA_v2
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/raphael/CLionProjects/S8_TPs_CUDA_v2/cmake-build-debug
+
+Cannot get compiler information:
+	Compiler exited with error code 1: gcc -xc++ -D__CUDA_ARCH__=520 -E -x c++ -DCUDA_DOUBLE_MATH_FUNCTIONS -D__CUDACC__ -D__NVCC__ -D__CUDACC_VER_MAJOR__=11 -D__CUDACC_VER_MINOR__=0 -D__CUDACC_VER_BUILD__=221 -include cuda_runtime.h -m64 -g -gdwarf-2 -fpch-preprocess -v -dD -E
+	Using built-in specs.
+	COLLECT_GCC=gcc
+	OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa:hsa
+	OFFLOAD_TARGET_DEFAULT=1
+	Target: x86_64-linux-gnu
+	Configured with: ../src/configure -v --with-pkgversion='Ubuntu 10.2.0-13ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-10/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-10 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-10-JvwpWM/gcc-10-10.2.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-10-JvwpWM/gcc-10-10.2.0/debian/tmp-gcn/usr,hsa --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+	Thread model: posix
+	Supported LTO compression algorithms: zlib zstd
+	gcc version 10.2.0 (Ubuntu 10.2.0-13ubuntu1) 
+	COLLECT_GCC_OPTIONS='-D' '__CUDA_ARCH__=520' '-E' '-D' 'CUDA_DOUBLE_MATH_FUNCTIONS' '-D' '__CUDACC__' '-D' '__NVCC__' '-D' '__CUDACC_VER_MAJOR__=11' '-D' '__CUDACC_VER_MINOR__=0' '-D' '__CUDACC_VER_BUILD__=221' '-include' 'cuda_runtime.h' '-m64' '-g' '-gdwarf-2' '-fpch-preprocess' '-v' '-dD' '-E' '-D' '___CIDR_DEFINITIONS_END' '-mtune=generic' '-march=x86-64'
+	 /usr/lib/gcc/x86_64-linux-gnu/10/cc1plus -E -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE -D __CUDA_ARCH__=520 -D CUDA_DOUBLE_MATH_FUNCTIONS -D __CUDACC__ -D __NVCC__ -D __CUDACC_VER_MAJOR__=11 -D __CUDACC_VER_MINOR__=0 -D __CUDACC_VER_BUILD__=221 -D ___CIDR_DEFINITIONS_END -include cuda_runtime.h /tmp/compiler-file3412329799729150832 -m64 -mtune=generic -march=x86-64 -fpch-preprocess -g -gdwarf-2 -fworking-directory -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -dD
+	ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/10"
+	ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+	ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/10/include-fixed"
+	ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/include"
+	#include "..." search starts here:
+	#include <...> search starts here:
+	 /usr/include/c++/10
+	 /usr/include/x86_64-linux-gnu/c++/10
+	 /usr/include/c++/10/backward
+	 /usr/lib/gcc/x86_64-linux-gnu/10/include
+	 /usr/local/include
+	 /usr/include/x86_64-linux-gnu
+	 /usr/include
+	End of search list.
+	In file included from /usr/include/cuda_runtime.h:83,
+	                 from <command-line>:
+	/usr/include/crt/host_config.h:139:2: error: #error -- unsupported GNU version! gcc versions later than 9 are not supported! The nvcc flag '-allow-unsupported-compiler' can be used to override this version check; however, using an unsupported host compiler may cause compilation failure or incorrect run time execution. Use at your own risk.
+	  139 | #error -- unsupported GNU version! gcc versions later than 9 are not supported! The nvcc flag '-allow-unsupported-compiler' can be used to override this version check; however, using an unsupported host compiler may cause compilation failure or incorrect run time execution. Use at your own risk.
+	      |  ^~~~~
+	
+	

@@ -3,7 +3,7 @@ project(S8_TPs_CUDA_v2 CUDA)
 
 set(CMAKE_CUDA_STANDARD 17)
 
-add_executable(S8_TPs_CUDA_v2 main.cu)
+add_executable(S8_TPs_CUDA_v2 sum.cu blur_v3.cu)
 
 set_target_properties(
         S8_TPs_CUDA_v2
