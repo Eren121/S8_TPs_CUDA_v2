@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <sys/timeb.h>
 
-// Version: optimal en lecture / écriture des pixelsp l'utilisation d'une mémoire partagée,
+// Version: optimal en lecture / écriture des pixels par l'utilisation d'une mémoire partagée,
 // Limitée dans la taille par 1024x1024
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION

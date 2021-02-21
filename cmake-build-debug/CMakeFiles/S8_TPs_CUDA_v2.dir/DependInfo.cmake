@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CUDA
   "/home/raphael/CLionProjects/S8_TPs_CUDA_v2/blur_v3.cu" "/home/raphael/CLionProjects/S8_TPs_CUDA_v2/cmake-build-debug/CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.o"
-  "/home/raphael/CLionProjects/S8_TPs_CUDA_v2/sum.cu" "/home/raphael/CLionProjects/S8_TPs_CUDA_v2/cmake-build-debug/CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o"
+  "/home/raphael/CLionProjects/S8_TPs_CUDA_v2/sum_v2.cu" "/home/raphael/CLionProjects/S8_TPs_CUDA_v2/cmake-build-debug/CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o"
   )
 set(CMAKE_CUDA_COMPILER_ID "NVIDIA")
 

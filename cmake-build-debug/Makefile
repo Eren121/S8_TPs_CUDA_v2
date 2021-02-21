@@ -170,32 +170,32 @@ blur_v3.cu.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/S8_TPs_CUDA_v2.dir/build.make CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.s
 .PHONY : blur_v3.cu.s
 
-sum.o: sum.cu.o
+sum_v2.o: sum_v2.cu.o
 
-.PHONY : sum.o
+.PHONY : sum_v2.o
 
 # target to build an object file
-sum.cu.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/S8_TPs_CUDA_v2.dir/build.make CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o
-.PHONY : sum.cu.o
+sum_v2.cu.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/S8_TPs_CUDA_v2.dir/build.make CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o
+.PHONY : sum_v2.cu.o
 
-sum.i: sum.cu.i
+sum_v2.i: sum_v2.cu.i
 
-.PHONY : sum.i
+.PHONY : sum_v2.i
 
 # target to preprocess a source file
-sum.cu.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/S8_TPs_CUDA_v2.dir/build.make CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.i
-.PHONY : sum.cu.i
+sum_v2.cu.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/S8_TPs_CUDA_v2.dir/build.make CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.i
+.PHONY : sum_v2.cu.i
 
-sum.s: sum.cu.s
+sum_v2.s: sum_v2.cu.s
 
-.PHONY : sum.s
+.PHONY : sum_v2.s
 
 # target to generate assembly for a file
-sum.cu.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/S8_TPs_CUDA_v2.dir/build.make CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.s
-.PHONY : sum.cu.s
+sum_v2.cu.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/S8_TPs_CUDA_v2.dir/build.make CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.s
+.PHONY : sum_v2.cu.s
 
 # Help Target
 help:
@@ -209,9 +209,9 @@ help:
 	@echo "... blur_v3.o"
 	@echo "... blur_v3.i"
 	@echo "... blur_v3.s"
-	@echo "... sum.o"
-	@echo "... sum.i"
-	@echo "... sum.s"
+	@echo "... sum_v2.o"
+	@echo "... sum_v2.i"
+	@echo "... sum_v2.s"
 .PHONY : help
 
 

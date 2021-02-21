@@ -77,17 +77,17 @@ include CMakeFiles/S8_TPs_CUDA_v2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/S8_TPs_CUDA_v2.dir/flags.make
 
-CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o: CMakeFiles/S8_TPs_CUDA_v2.dir/flags.make
-CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o: ../sum.cu
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raphael/CLionProjects/S8_TPs_CUDA_v2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o"
-	/usr/bin/nvcc -forward-unknown-to-host-compiler $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -dc /home/raphael/CLionProjects/S8_TPs_CUDA_v2/sum.cu -o CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o
+CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o: CMakeFiles/S8_TPs_CUDA_v2.dir/flags.make
+CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o: ../sum_v2.cu
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raphael/CLionProjects/S8_TPs_CUDA_v2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o"
+	/usr/bin/nvcc -forward-unknown-to-host-compiler $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -dc /home/raphael/CLionProjects/S8_TPs_CUDA_v2/sum_v2.cu -o CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o
 
-CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.i"
+CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.i"
 	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_PREPROCESSED_SOURCE
 
-CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CUDA source to assembly CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.s"
+CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CUDA source to assembly CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.s"
 	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
 
 CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.o: CMakeFiles/S8_TPs_CUDA_v2.dir/flags.make
@@ -105,13 +105,13 @@ CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.s: cmake_force
 
 # Object files for target S8_TPs_CUDA_v2
 S8_TPs_CUDA_v2_OBJECTS = \
-"CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o" \
+"CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o" \
 "CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.o"
 
 # External object files for target S8_TPs_CUDA_v2
 S8_TPs_CUDA_v2_EXTERNAL_OBJECTS =
 
-CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_link.o: CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o
+CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_link.o: CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o
 CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_link.o: CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.o
 CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_link.o: CMakeFiles/S8_TPs_CUDA_v2.dir/build.make
 CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_link.o: CMakeFiles/S8_TPs_CUDA_v2.dir/dlink.txt
@@ -125,13 +125,13 @@ CMakeFiles/S8_TPs_CUDA_v2.dir/build: CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_
 
 # Object files for target S8_TPs_CUDA_v2
 S8_TPs_CUDA_v2_OBJECTS = \
-"CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o" \
+"CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o" \
 "CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.o"
 
 # External object files for target S8_TPs_CUDA_v2
 S8_TPs_CUDA_v2_EXTERNAL_OBJECTS =
 
-S8_TPs_CUDA_v2: CMakeFiles/S8_TPs_CUDA_v2.dir/sum.cu.o
+S8_TPs_CUDA_v2: CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o
 S8_TPs_CUDA_v2: CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.o
 S8_TPs_CUDA_v2: CMakeFiles/S8_TPs_CUDA_v2.dir/build.make
 S8_TPs_CUDA_v2: CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_link.o

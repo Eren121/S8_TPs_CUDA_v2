@@ -69,7 +69,7 @@
 		<Unit filename="/home/raphael/CLionProjects/S8_TPs_CUDA_v2/blur_v3.cu">
 			<Option target="S8_TPs_CUDA_v2"/>
 		</Unit>
-		<Unit filename="/home/raphael/CLionProjects/S8_TPs_CUDA_v2/sum.cu">
+		<Unit filename="/home/raphael/CLionProjects/S8_TPs_CUDA_v2/sum_v2.cu">
 			<Option target="S8_TPs_CUDA_v2"/>
 		</Unit>
 		<Unit filename="/home/raphael/CLionProjects/S8_TPs_CUDA_v2/CMakeLists.txt">

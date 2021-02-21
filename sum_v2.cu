@@ -4,16 +4,17 @@
 #include <stdio.h>
 #include <sys/timeb.h>
 
-// 1 pour optimiser en utilisant une mémoire partagée
-#define SHARED 1
+
+// Hypercube
+// Version: pas de mémoire partagée
+// On réduit tout sur une dimension à chaque appel (non optimisé pour une mémoire partagée par block)
+// Pas de distinction entre des threads du même block
+// Pas limité en taille
 
 #define pow2(x) (1<<(x))
-#define N 300000000
-
-#define NTESTS 1000
 
 // Nombre de threads par bloc
-#define NBTHREADS_MAX 256
+#define NBTHREADS_MAX 1024
 
 #define check(error) { checkCudaError((error), __FILE__, __LINE__); }
 void checkCudaError(cudaError_t code, const char *file, int line)
@@ -24,13 +25,22 @@ void checkCudaError(cudaError_t code, const char *file, int line)
     }
 }
 
+// Note: l'utilisation de mémoire partagée ne paraît pas optimale ici
+// nvprof ne montre pas d'amélioration significative (voir des baisses de performance)
 // Kernel de la somme hypercube
 // Ne fonctionne que pour un seul bloc
 __global__
 void kernel_hypercube(int *t, int taille) {
-    const int x = threadIdx.x + blockIdx.x * blockDim.x;
+    __shared__ int s[NBTHREADS_MAX];
+
+    const int x = threadIdx.x;
     const int nbits = (int)ceil(log2((double)taille));
     int d, mask, in, out;
+
+    if(x < taille) {
+        s[x] = t[x];
+    }
+    __syncthreads();
 
     for(d = 1; d <= nbits; ++d) {
         if (x < pow2(nbits - d)) {
@@ -39,16 +49,23 @@ void kernel_hypercube(int *t, int taille) {
             out = mask;
 
             if (in < taille) {
-                t[out] += t[in];
+                s[out] += s[in];
             }
         }
 
+        // NE Fonctionne que sur 1024 à cause de __syncthreads():
+        // Syncthreads ne marche que pour les threads du même block (donc <= 1024 threads)
         // On doit synchroniser mêmes les threads en dehors sinon deadlock
         __syncthreads();
+    }
+
+    if(x < taille) {
+        t[x] = s[x];
     }
 }
 
 // Kernel pour une dimension
+// Réduit 1 dimension de l'hypercube
 __global__
 void kernel_hypercube_uneDim(int *t, int taille, int d, int nbits) {
     const int x = threadIdx.x + blockIdx.x * blockDim.x;
@@ -123,17 +140,24 @@ void printArr(int *t, int taille) {
 int main(int argc, char **argv) {
     cudaEvent_t start, stop;
     float millis;
-    int nBytes = sizeof(int) * N;
-    int *h_arr = (int*)malloc(nBytes);
+    int nBytes;
+    int *h_arr = NULL;
     int *d_arr = NULL;
     int nbBlocks;
-    int nbits = (int)ceil(log2((double)N)), d;
+    int nbits, d;
     struct timeb tav, tap;
     double te;
     int somCpu;
-    int dim = N;
+    const int taille = argc < 2 ? 1000000 : strtol(argv[1], NULL, 10);
 
-    if (argc >= 2) dim = strtol(argv[1], NULL, 10);
+    nBytes = sizeof(int) * taille;
+    nbits = (int)ceil(log2((double)taille));
+    h_arr = (int*)malloc(nBytes);
+
+    if(!h_arr) {
+        fprintf(stderr, "Erreur d'allocation mémoire\n");
+        exit(1);
+    }
 
     check(cudaEventCreate(&start));
     check(cudaEventCreate(&stop));
@@ -141,39 +165,39 @@ int main(int argc, char **argv) {
     check(cudaMalloc(&d_arr, nBytes));
 
     srand(1234);
-    fillRandomly(h_arr, N);
+    fillRandomly(h_arr, taille);
 
-    if(dim < 100) printArr(h_arr, dim);
+    if(taille < 100) printArr(h_arr, taille);
 
 
     ftime(&tav);
-    somCpu = somme(h_arr, dim);
+    somCpu = somme(h_arr, taille);
     ftime(&tap);
     te = (double)((tap.time*1000+tap.millitm)-(tav.time*1000+tav.millitm))/1000 ;
 
-    printf("%d éléments, %.3fMo\n", dim, dim / 512.0 / 1024.0 * sizeof(int));
+    printf("%d éléments, %.3fMo\n", taille, taille / 512.0 / 1024.0 * sizeof(int));
     printf("SequentielCPU: %d, %.3lfs\n", somCpu, te);
 
 
     // somme_hypercube() change le tableau, on remet comme avant
     srand(1234);
-    fillRandomly(h_arr, dim);
+    fillRandomly(h_arr, taille);
 
 
     check(cudaMemcpy(d_arr, h_arr, nBytes, cudaMemcpyHostToDevice));
 
     cudaEventRecord(start);
 
-    nbBlocks = (dim - 1) / NBTHREADS_MAX + 1;
+    nbBlocks = (taille - 1) / NBTHREADS_MAX + 1;
     if(nbBlocks == 1) {
         // S'il n'y a qu'un seul bloc, pas de problème de synchronisation
-        kernel_hypercube<<<nbBlocks, NBTHREADS_MAX>>>(d_arr, dim);
+        kernel_hypercube<<<nbBlocks, NBTHREADS_MAX>>>(d_arr, taille);
     }
     else {
         // Sinon on doit séparer dimension par dimension
         // Car on ne peut pas synchroniser des threads de blocs différents sur le device
         for(d = 1; d <= nbits; ++d) {
-            kernel_hypercube_uneDim<<<nbBlocks, NBTHREADS_MAX>>>(d_arr, dim, d, nbits);
+            kernel_hypercube_uneDim<<<nbBlocks, NBTHREADS_MAX>>>(d_arr, taille, d, nbits);
             check(cudaDeviceSynchronize());
         }
     }
@@ -184,7 +208,7 @@ int main(int argc, char **argv) {
 
     check(cudaMemcpy(h_arr, d_arr, nBytes, cudaMemcpyDeviceToHost));
 
-    if(dim < 100) printArr(h_arr, dim);
+    if(taille < 100) printArr(h_arr, taille);
     printf("HypercubeCUDA: %d, %.3fs\n", h_arr[0], millis / 1000.0f);
 
     check(cudaFree(d_arr));
