@@ -1,0 +1,14 @@
+*.i
+*.ii
+*.gpu
+*.ptx
+*.cubin
+*.fatbin
+*.out
+*.o
+*.obj
+*.a
+.vscode
+*.ipynb_checkpoints
+
+job.*.txt

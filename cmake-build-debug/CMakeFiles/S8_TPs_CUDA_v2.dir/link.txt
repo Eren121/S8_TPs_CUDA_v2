@@ -1,1 +1,0 @@
-/usr/lib/nvidia-cuda-toolkit/bin/g++  CMakeFiles/S8_TPs_CUDA_v2.dir/sum_v2.cu.o CMakeFiles/S8_TPs_CUDA_v2.dir/blur_v3.cu.o CMakeFiles/S8_TPs_CUDA_v2.dir/cmake_device_link.o -o S8_TPs_CUDA_v2  -lcudadevrt -lcudart_static  -L"/usr/lib/x86_64-linux-gnu/stubs" -L"/usr/lib/x86_64-linux-gnu" -lrt -lpthread -ldl
